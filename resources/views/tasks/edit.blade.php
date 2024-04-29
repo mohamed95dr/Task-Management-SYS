@@ -10,7 +10,7 @@
     <br>
     <div class="container">
     <h1>Edit Task</h1>
-    <form action="{{ route('tasks.update', $task->id) }}" method="POST">
+    <form action="{{ route('tasks.update', $task->id ) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -29,10 +29,17 @@
                 <option value="high" @if($task->priority == 'high') selected @endif>High</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label for="due_date">Due Date</label>
-            <input type="date" class="form-control" id="due_date" name="due_date" value="{{ $task->due_date }}">
+            <label for="assignment_Date"> Assignment Date</label>
+            <input type="date" class="form-control" id="assignment_Date" name="assignment_Date" value="{{ $task->assignment_Date }}">
         </div>
+
+        <div class="form-group">
+            <label for="delivery_Date"> Delivery Date</label>
+            <input type="date" class="form-control" id="delivery_Date" name="delivery_Date" value="{{ $task->delivery_Date }}">
+        </div>
+
         <div class="form-group">
             <label for="statuses">Statuses</label>
             <select class="form-control" id="statuses" name="statuses" required>
@@ -41,6 +48,16 @@
                 <option value="Done" @if($task->statuses == 'Done') selected @endif>Done</option>
             </select>
         </div>
+        
+        <div class="form-group">
+            <label for="user_id">Task Holder</label>
+            <select class="form-control" id="user_id" name="user_id" required>
+             @foreach ($users as $user)
+             <option value ="{{ $user->id }}">{{$user->name}}</option>
+             @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Update Task</button>
     </form>
 </div>

@@ -13,7 +13,7 @@
     <div class="container text-center">
         <h1>Task Management System</h1>
 
-        <h2>Task List</h2> @if(session('success'))
+        <h2>Users List</h2> @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -23,45 +23,34 @@
 
     <div class="container">
 
-    <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Create Task</a>
+    <a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Create User</a>
 
         <table class="table table-bordered">
             <thead class="thead-dark">
                 <tr>
-                    <th>Title</th>
-                    <!-- <th>due_date</th> -->
-                    <th>priority</th>
-                    <th>description</th>
-                    <th>statuses</th>
-                    <th>assignment_Date</th>
-                    <th>delivery_Date</th>
-                    <th>Task Holder</th>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>role</th>
+                    <th>email</th>
                     <th>Action</th>
 
                 </tr>
             </thead>
             <tbody>
-                @foreach ($tasks as $task)
+                @foreach ($users as $user)
                 <tr>
-                    <td>{{ $task->title }}</td>
-                    <!-- <td>{{ $task->due_date }}</td> -->
-                    <td>{{ $task->priority }}</td>
-                    <td>{{ $task->description }}</td>
-                    <td>{{ $task->statuses }}</td>
-                    <td>{{ $task->assignment_Date }}</td>
-                    <td>{{ $task->delivery_Date }}</td>
-                    <td>{{ $task->user->name }}</td>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->role }}</td>
+                    <td>{{ $user->email }}</td>
 
                     <td>
 
-                    <a href="{{ route('tasks.assign',$task->id) }}" class="btn btn-primary btn-sm">Assign</a>
-
-
-                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-secondary btn-sm">
+                        <a href="{{ route('users.index') }}" class="btn btn-secondary btn-sm">
                             <i class="fa fa-edit"></i> Edit
                         </a>
 
-                        <form action="{{ route('tasks.destory', $task->id) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('users.index') }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm"

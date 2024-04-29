@@ -95,7 +95,7 @@ class taskController extends Controller
                 ]);
                 $task->update([
                     'title' => $request->input('title'),
-                    'user_id' => $request->input('title'),
+                    'user_id' => $request->input('user_id'),
                     'description' => $request->input('description'),
         
                 ]);

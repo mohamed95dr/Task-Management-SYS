@@ -10,7 +10,7 @@
     <br>
     <div class="container">
     <h1>Assign Task</h1>
-    <form action="{{ route('tasks.update', $task->id ) }}" method="POST">
+    <form action="{{ route('tasks.assignement',$task->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -18,8 +18,8 @@
             <input type="text" class="form-control" id="title" name="title" value="{{ $task->title }}" required>
         </div>
         <div class="form-group">
-            <label for="task-holder">Task Holder</label>
-            <select class="form-control" id="task-holder" name="task-holder" required>
+            <label for="user_id">Task Holder</label>
+            <select class="form-control" id="user_id" name="user_id" required>
              @foreach ($users as $user)
              <option value ="{{ $user->id }}">{{$user->name}}</option>
              @endforeach

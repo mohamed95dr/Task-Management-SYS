@@ -7,21 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
+
 class TaskAssignement extends Notification
 {
     use Queueable;
-    private $task_id;
-    private $task_holder;
+    private $task_title;
+    private $task_constructor;
 
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($task_id,$task_holder)
+    public function __construct($task_title,$task_constructor)
     {
         //
-        $this->task_id = $task_id;
-        $this->task_holder = $task_holder;
+        $this->task_title = $task_title;
+        $this->task_constructor = $task_constructor;
 
     }
 
@@ -36,6 +37,8 @@ class TaskAssignement extends Notification
     {
         return [
             //
+            $task_title = $this->task_title,
+            $task_constructor = $this->task_constructor
         ];
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Models\Task;
 use App\Models\User;
+use App\Notifications\TaskAssignement;
 
 
 
@@ -102,10 +103,10 @@ class taskController extends Controller
         
                 ]);
 
+                $task_constructor = auth()->user()->name;
+                Notification::send($task_holder,new TaskAssignement($task->title,$task_constructor));
 
-                Notification::send($task_holder,new TaskAssignement);
-
-                return redirect()->route('tasks.index')->with('success',' Task assignement successfully');
+                return redirect()->route('dashboard')->with('success',' Task assignement successfully');
 
             }
             

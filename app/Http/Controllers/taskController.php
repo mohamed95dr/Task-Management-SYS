@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use App\Models\Task;
 use App\Models\User;
 
@@ -85,8 +86,9 @@ class taskController extends Controller
             }
             
 
-            public function assignement(Request $request,Task $task){
-                
+        public function assignement(Request $request,Task $task){
+                $task_holder=User::find($request->input('user_id'));
+                // return $task_holder;      
                 $request->validate([
                     'title' => 'required|max:255',
                     'description' => 'nullable',
@@ -99,6 +101,10 @@ class taskController extends Controller
                     'description' => $request->input('description'),
         
                 ]);
+
+
+                Notification::send($task_holder,new TaskAssignement);
+
                 return redirect()->route('tasks.index')->with('success',' Task assignement successfully');
 
             }

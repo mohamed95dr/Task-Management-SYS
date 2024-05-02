@@ -49,14 +49,14 @@
             </select>
         </div>
         
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="user_id">Task Holder</label>
             <select class="form-control" id="user_id" name="user_id" required>
              @foreach ($users as $user)
              <option value ="{{ $user->id }}">{{$user->name}}</option>
              @endforeach
             </select>
-        </div>
+        </div> -->
 
         <button type="submit" class="btn btn-primary">Update Task</button>
     </form>

@@ -22,25 +22,33 @@ class taskController extends Controller
         return view ('tasks.index',compact('tasks','users'));
     }
     public function create(){
-        return view('tasks.create');
+        $tasks = Task::all();
+        $users = User::all();
+
+
+        return view('tasks.create',compact('tasks','users'));
     }
 
     public function store(Request $request){
+        // return $request;
         $request->validate([
             'title' => 'required|max:255',
-            'description' => 'nullable',
-            'priority' => 'required |max:255',
             'due_date' => 'required |max:255',
-            'statuses' => 'required |max:255'
-
+            'priority' => 'required |in:low,medium,high',
+            'description' => 'nullable', 
+            'statuses' => 'required |max:255',
+            'assignment_Date' => 'nullable',
+            'delivery_Date' => 'nullable',
+            'user_id' => 'nullable'
         ]);
         Task::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'priority' => $request->input('priority'),
-            'due_date' => $request->input('due_date'),
-            'statuses' => $request->input('statuses')
-
+            'assignment_Date' => $request->input('assignment_Date'),
+            'delivery_Date' => $request->input('delivery_Date'),
+            'statuses' => $request->input('statuses'),
+            'user_id' => $request->input('user_id')
         ]);
 
         return redirect()->route('tasks.index')->with('success',' Task ADD successfully');
@@ -93,11 +101,15 @@ class taskController extends Controller
                 $request->validate([
                     'title' => 'required|max:255',
                     'description' => 'nullable',
+                    'assignment_Date' => 'required |max:255',
+                    'delivery_Date' => 'required |max:255',
                     'user_id' => 'required ',
         
                 ]);
                 $task->update([
                     'title' => $request->input('title'),
+                    'assignment_Date' => $request->input('assignment_Date'),
+                    'delivery_Date' => $request->input('delivery_Date'),
                     'user_id' => $request->input('user_id'),
                     'description' => $request->input('description'),
         

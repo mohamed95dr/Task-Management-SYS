@@ -26,6 +26,15 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="assignment_Date"> Assignment Date</label>
+            <input type="date" class="form-control" id="assignment_Date" name="assignment_Date" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="delivery_Date"> Delivery Date</label>
+            <input type="date" class="form-control" id="delivery_Date" name="delivery_Date" value="">
+        </div>
+        <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control" id="description" name="description" rows="2">{{ $task->description }}</textarea>
         </div>

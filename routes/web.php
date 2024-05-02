@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/users',[userController::class,'index'])->name('users.index');
     Route::get('/users/create',[userController::class,'create'])->name('users.create');
-
+    Route::post('/users/create/store',[userController::class,'store'])->name('users.store');
 
 
 });

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Models\Task;
 use App\Models\User;
 use App\Notifications\TaskAssignement;
+use Illuminate\Http\Controllers;
 
 
 
@@ -14,6 +15,7 @@ class taskController extends Controller
 {
     //
     public function index(){
+        // return auth()->User()->unreadNotifications->count();
         // $user=user::find(1);
         // return $user->tasks;
         $tasks = Task::all();
@@ -118,7 +120,7 @@ class taskController extends Controller
                 $task_constructor = auth()->user()->name;
                 Notification::send($task_holder,new TaskAssignement($task->title,$task_constructor));
 
-                return redirect()->route('dashboard')->with('success',' Task assignement successfully');
+                return redirect()->route('tasks.index')->with('success',' Task assignement successfully');
 
             }
             

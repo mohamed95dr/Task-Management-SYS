@@ -64,7 +64,7 @@ class taskController extends Controller
 
     public function update(Request $request,Task $task){
 
-
+        // return $request;
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'nullable',
@@ -72,7 +72,7 @@ class taskController extends Controller
             'assignment_Date' => 'required |max:255',
             'delivery_Date' => 'required |max:255',
             'statuses' => 'required |max:255',
-            'user_id' => 'required |max:255'
+            // 'user_id' => 'required |max:255'
 
         ]);
         $task->update([

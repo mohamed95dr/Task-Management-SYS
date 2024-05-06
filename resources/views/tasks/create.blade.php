@@ -30,12 +30,12 @@
         </div>
         <div class="form-group">
             <label for="assignment_Date"> Assignment Date</label>
-            <input type="date" class="form-control" id="assignment_Date" name="assignment_Date" value="">
+            <input type="date" class="form-control" id="assignment_Date" name="assignment_Date">
         </div>
 
         <div class="form-group">
             <label for="delivery_Date"> Delivery Date</label>
-            <input type="date" class="form-control" id="delivery_Date" name="delivery_Date" value="">
+            <input type="date" class="form-control" id="delivery_Date" name="delivery_Date">
         </div>
         <div class="form-group">
             <label for="due_date">Due Date</label>
@@ -51,7 +51,8 @@
         </div>
         <div class="form-group">
             <label for="user_id">Task Holder</label>
-            <select class="form-control" id="user_id" name="user_id" required>
+            <select class="form-control" id="user_id" name="user_id">
+            <option value=""></option>
              @foreach ($users as $user)
              <option value ="{{ $user->id }}">{{$user->name}}</option>
              @endforeach

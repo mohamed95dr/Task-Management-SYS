@@ -66,7 +66,7 @@ font-size: 13px;
  </style>
 </head>
 <body>
-<div class="container">
+<div class="">
 <div class="row">
 <div class="col-lg-10 col-sm-10 col-12 offset-lg-1 offset-sm-1">
 <nav class="navbar navbar-expand-lg bg-info rounded">

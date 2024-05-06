@@ -20,6 +20,7 @@
         <div class="form-group">
             <label for="user_id">Task Holder</label>
             <select class="form-control" id="user_id" name="user_id" required>
+            <option value ="">----</option>
              @foreach ($users as $user)
              <option value ="{{ $user->id }}">{{$user->name}}</option>
              @endforeach

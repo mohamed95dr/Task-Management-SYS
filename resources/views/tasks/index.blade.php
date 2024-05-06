@@ -50,7 +50,7 @@
                     <td>{{ $task->statuses }}</td>
                     <td>{{ $task->assignment_Date }}</td>
                     <td>{{ $task->delivery_Date }}</td>
-                    <td>{{ $task->user->name }}</td>
+                    <td>{{ ($task->user != null)? $task->user->name : "no user" }}</td>
 
                     <td>
 

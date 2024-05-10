@@ -48,5 +48,7 @@ Route::put('/tasks/{task}',[taskController::class,'update'])->name('tasks.update
 Route::get('/tasks/assign/{task}',[taskController::class,'assign'])->name('tasks.assign');
 Route::put('/tasks/assignement/{task}',[taskController::class,'assignement'])->name('tasks.assignement');
 Route::delete('/tasks/{task}',[taskController::class,'destory'])->name('tasks.destory');
+Route::get('/tasks/show/{task}',[taskController::class,'show'])->name('tasks.show');
+
 
 require __DIR__.'/auth.php';

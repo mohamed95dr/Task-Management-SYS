@@ -135,10 +135,10 @@ font-size: 13px;
 <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
 </div>
 <div class="col-lg-8 col-sm-8 col-8">
-<strong class="text-info"> Task Title : {{$notification->data[0]}} </strong>
+    <a href="{{route ('tasks.show',$notification->data[1])}}"> Task Title : {{$notification->data[0]}} </a>
 <div>
     The Task Constructor:
-  {{$notification->data[1]}}
+  {{$notification->data[2]}}
 </div>
 <small class="text-warning">{{$notification->created_at}}</small>
 </div>

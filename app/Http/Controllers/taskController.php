@@ -98,6 +98,7 @@ class taskController extends Controller
             
 
         public function assignement(Request $request,Task $task){
+                // return $request;
                 $task_holder=User::find($request->input('user_id'));
                 // return $task_holder;      
                 $request->validate([
@@ -116,9 +117,11 @@ class taskController extends Controller
                     'description' => $request->input('description'),
         
                 ]);
-
+                
+                $task_id = $task->id;
+                // return $task_id;
                 $task_constructor = auth()->user()->name;
-                Notification::send($task_holder,new TaskAssignement($task->title,$task_constructor));
+                Notification::send($task_holder,new TaskAssignement($task_id,$task->title,$task_constructor));
 
                 return redirect()->route('tasks.index')->with('success',' Task assignement successfully');
 
@@ -129,6 +132,10 @@ class taskController extends Controller
         $task->delete();
         return redirect()->route('tasks.index')->with('success',' Task delete successfully');
 
+    }
+
+    public function show ($id){
+      return $id ;
     }
 
 }

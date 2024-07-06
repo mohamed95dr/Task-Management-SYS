@@ -8,8 +8,7 @@ use App\Models\Task;
 use App\Models\User;
 use App\Notifications\TaskAssignement;
 use Illuminate\Http\Controllers;
-
-
+use Illuminate\Support\Facades\DB;
 
 class taskController extends Controller
 {
@@ -31,11 +30,16 @@ class taskController extends Controller
         return view('tasks.create',compact('tasks','users'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request , Task $task){
         // return $request;
+
+        $task_holder=User::find($request->input('user_id'));
+        // return $task_holder;
+        if( $task_holder == null){
+        echo"1";
+        }
         $request->validate([
             'title' => 'required|max:255',
-            'due_date' => 'required |max:255',
             'priority' => 'required |in:low,medium,high',
             'description' => 'nullable', 
             'statuses' => 'required |max:255',
@@ -52,7 +56,16 @@ class taskController extends Controller
             'statuses' => $request->input('statuses'),
             'user_id' => $request->input('user_id')
         ]);
-
+        
+        if( $task_holder !== null){
+        $task_id = $task->id;
+        $task_constructor = auth()->user()->name;
+        Notification::send($task_holder,new TaskAssignement($task_id,$task->title,$task_constructor));
+        }
+        else
+        {
+            echo("there is no owner for this task");
+        }
         return redirect()->route('tasks.index')->with('success',' Task ADD successfully');
 
     }
@@ -96,8 +109,11 @@ class taskController extends Controller
                 return view('tasks.assign',compact('task','users'));
             }
             
+            //////Assignement
 
         public function assignement(Request $request,Task $task){
+
+
                 // return $request;
                 $task_holder=User::find($request->input('user_id'));
                 // return $task_holder;      
@@ -135,7 +151,13 @@ class taskController extends Controller
     }
 
     public function show ($id){
-      return $id ;
-    }
+    //   return $id;
+      $task = Task::findorfail($id);
+      $get_id = DB::table('notifications')->where('data->task_id',$id)->pluck('id');
+      DB::table('notifications')->where('id',$get_id)->update(['read_at'=> now()]);
+    //   return $get_id;
+      return redirect()->route('dashboard');
+
+       }
 
 }

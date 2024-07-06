@@ -19,7 +19,7 @@ class TaskAssignement extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct($task_title,$task_constructor,$task_id)
+    public function __construct($task_id,$task_title,$task_constructor)
     {
         //
         $this->task_id = $task_id;
@@ -39,9 +39,9 @@ class TaskAssignement extends Notification
     {
         return [
             //
-            $task_id = $this->task_id,
-            $task_title = $this->task_title,
-            $task_constructor = $this->task_constructor
+            'task_id' => $this->task_id,
+            'task_title' => $this->task_title,
+            'task_constructor' => $this->task_constructor
         ];
     }
 }

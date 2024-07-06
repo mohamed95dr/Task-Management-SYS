@@ -125,7 +125,7 @@ font-size: 13px;
 <div class="col-lg-12 col-sm-12 col-12">
             
 <span>Notifications ({{Auth::User()->unreadNotifications->count()}})</span>
-<a href="" class="float-right text-light"> {{Auth::User()->name}} </a>
+{{-- <a href="" class="float-right text-light"> {{Auth::User()->name}} </a> --}}
 </div>
 </li>
 @foreach (Auth::User()->unreadNotifications as $notification)
@@ -135,10 +135,10 @@ font-size: 13px;
 <img src="/demo/man-profile.jpg" class="w-50 rounded-circle">
 </div>
 <div class="col-lg-8 col-sm-8 col-8">
-    <a href="{{route ('tasks.show',$notification->data[1])}}"> Task Title : {{$notification->data[0]}} </a>
+    <a href="{{route ('tasks.show',$notification->data['task_id'])}}"> Task Title : {{$notification->data['task_title']}} </a>
 <div>
     The Task Constructor:
-  {{$notification->data[2]}}
+  {{$notification->data['task_constructor']}}
 </div>
 <small class="text-warning">{{$notification->created_at}}</small>
 </div>

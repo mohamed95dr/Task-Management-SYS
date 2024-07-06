@@ -24,6 +24,7 @@
     <div class="container">
 
     <a href="{{ route('tasks.create') }}" class="btn btn-primary mb-3">Create Task</a>
+    <a href="{{ route('dashboard') }}" class="btn btn-dark mb-3">Go Back</a>
 
         <table class="table table-bordered">
             <thead class="thead-dark">

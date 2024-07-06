@@ -23,6 +23,7 @@
         <div class="form-group">
             <label for="priority">Priority</label>
             <select class="form-control" id="priority" name="priority" required>
+                <option value=""></option>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>
@@ -37,14 +38,15 @@
             <label for="delivery_Date"> Delivery Date</label>
             <input type="date" class="form-control" id="delivery_Date" name="delivery_Date">
         </div>
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label for="due_date">Due Date</label>
             <input type="date" class="form-control" id="due_date" name="due_date">
-        </div>
+        </div> --}}
         <div class="form-group">
             <label for="statuses">Statuses</label>
             <select class="form-control" id="statuses" name="statuses" required>
-                <option value="ToDo">To Do</option>
+                <option value=""></option>
+                <option value="To Do">To Do</option>
                 <option value="Inprogress">Inprogress</option>
                 <option value="Done">Done</option>
             </select>
